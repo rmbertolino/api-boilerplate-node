@@ -1,0 +1,17 @@
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql-dev
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${API_DB_MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${API_DB_MYSQL_DATABASE}
+      MYSQL_USER: ${API_DB_MYSQL_USER}
+      MYSQL_PASSWORD: ${API_DB_MYSQL_PASSWORD}
+    ports:
+      - "${API_DB_MYSQL_PORT}:${API_DB_MYSQL_PORT}"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

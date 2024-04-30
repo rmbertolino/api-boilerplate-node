@@ -1,6 +1,5 @@
-require('dotenv').config()
-
 const express = require('express')
+const config = require('./config/env')
 
 const Middlewares = require('./middlewares/appMiddleware')
 const AuthMiddleware = require('./middlewares/authMiddleware')
@@ -11,10 +10,10 @@ const v1AuthRouter = require('./v1/routes/authRoutes')
 
 // app
 const app = express()
-const PORT = process.env.GIVR_API_PORT || 3000
+const PORT = config.API_PORT
 
 // middlewares
-const auth = new AuthMiddleware(process.env.GIVR_API_JWT_SECRET)
+const auth = new AuthMiddleware(config.API_JWT_SECRET)
 const appMiddlewares = new Middlewares()
 app.use(appMiddlewares.getMiddlewares())
 

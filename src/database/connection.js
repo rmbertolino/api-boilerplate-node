@@ -1,4 +1,5 @@
 const { Sequelize } = require('sequelize')
+const config = require('../config/env')
 const dayjs = require('dayjs')
 const utc = require('dayjs/plugin/utc')
 const timezone = require('dayjs/plugin/timezone')
@@ -7,17 +8,17 @@ dayjs.extend(utc)
 dayjs.extend(timezone)
 
 const db = new Sequelize(
-  process.env.GIVR_API_DB_NAME,
-  process.env.GIVR_API_DB_USER,
-  process.env.GIVR_API_DB_PASSWORD,
+  config.API_DB_MYSQL.DATABASE,
+  config.API_DB_MYSQL.USER,
+  config.API_DB_MYSQL.PASSWORD,
   {
-    host: process.env.GIVR_API_DB_HOST,
-    dialect: process.env.GIVR_API_DB_DIALECT,
-    timezone: process.env.GIVR_API_TZ,
+    host: config.API_DB_MYSQL.HOST,
+    dialect: config.API_DB_MYSQL.DIALECT,
+    timezone: config.API_TZ,
     define: {
       freezeTableName: true,
       tableName: function (tableName) {
-        return process.env.GIVR_API_DB_NAME + '.' + tableName
+        return config.API_DB_MYSQL.DATABASE + '.' + tableName
       },
       timestamps: true,
       createdAt: 'createdAt',

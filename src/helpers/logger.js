@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const rootPath = process.env.GIVR_API_LOG_DIRECTORY
+const rootPath = process.env.API_LOG_DIRECTORY
 
 class Log {
   constructor () {
